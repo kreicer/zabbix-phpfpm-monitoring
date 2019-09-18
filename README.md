@@ -21,7 +21,7 @@ We capture useful data from host and fpm status page:
 	- **Start time** - the moment of launch of current pool
 	- **Processes** - the number of processes in total / active / idle state of current pool
 	- **Memory used** - the number and % of used memory by current pool
-	- **Requests** - the number of reqiests in accepted / queue / slow state of current pool
+	- **Requests** - the number of reqiests in accepted (per min) / queue / slow state of current pool
 	- **Other** - another stats from status page of current pool
 
 History storage period is 7 days, trend storage period is 30 days.
@@ -120,6 +120,13 @@ oIo - speacial symbols sequence for dividing status pages addresses (you can rew
 
 ```
 div="oIo"
+```
+
+Rewrite tresholds (if needed):
+
+```
+{$FPM_MEM_WARN}=50 //mem % of total mem for trigger
+{$FPM_CONN_WARN}=150 //number of accepted reqs per minute for trigger
 ```
 
 Setup is finished, just wait 15 minutes till Zabbix discovers your providers and captures the data (or use manual check).
